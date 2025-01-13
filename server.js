@@ -12,7 +12,7 @@ connectDB();
 
 // Middleware
 app.use(cors({
-  origin: 'https://services-ireigrpb2-jothikumars-projects.vercel.app/', // Replace with your frontend's URL
+  origin: 'https://services-bice-six.vercel.app/', // Replace with your frontend's URL
   methods: ['POST'],
 }));
 app.use(bodyParser.json());
