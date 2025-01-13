@@ -11,10 +11,23 @@ const app = express();
 connectDB();
 
 // Middleware
-app.use(cors({
-  origin: 'https://services-bice-six.vercel.app/', // Replace with your frontend's URL
-  methods: ['POST'],
-}));
+const allowedOrigins = [
+  'https://services-bice-six.vercel.app', // Your Vercel frontend URL
+];
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: 'GET,POST,PUT,DELETE',
+  credentials: true, // Allow cookies or credentials
+};
+
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
