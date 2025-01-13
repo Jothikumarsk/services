@@ -11,7 +11,10 @@ const app = express();
 connectDB();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: 'https://services-ireigrpb2-jothikumars-projects.vercel.app/', // Replace with your frontend's URL
+  methods: ['POST'],
+}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
